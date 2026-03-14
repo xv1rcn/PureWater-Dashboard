@@ -1,0 +1,505 @@
+:root {
+  --green: #008a4b;
+  --green-weak: #d6efdf;
+  --ink: #17312b;
+  --muted: #607a74;
+  --line: #e5e5e5;
+  --warn: #d89a21;
+  --danger: #cb3e3e;
+  --radius-lg: 18px;
+  --radius-md: 14px;
+}
+
+body {
+  color: var(--ink);
+  background: linear-gradient(180deg, #f2faf6 0%, #ffffff 30%, #f7faf8 100%);
+  font-family: "Microsoft YaHei", "Noto Sans SC", "PingFang SC", sans-serif;
+}
+
+.top-bar {
+  color: #ffffff;
+  padding: 24px 20px 30px;
+  text-align: center;
+  background: radial-gradient(circle at 12% 16%, #1fb06d 0%, var(--green) 45%, #04683a 100%);
+}
+
+.top-bar h1 {
+  margin: 0;
+  font-size: clamp(20px, 2.1vw, 32px);
+  letter-spacing: 1px;
+}
+
+.top-bar p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  color: #def6e8;
+}
+
+.main-content {
+  max-width: 1500px;
+  margin: -12px auto 0;
+  padding: 0 18px 22px;
+}
+
+.dashboard-section {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(220px, 1fr));
+  gap: 14px;
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 16px;
+  box-shadow: 0 8px 28px rgba(4, 104, 58, 0.08);
+  animation: rise-in 0.7s ease both;
+}
+
+.gauge-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: linear-gradient(160deg, #fbfdfc 0%, #f2f8f4 100%);
+  padding: 10px 8px 12px;
+  text-align: center;
+}
+
+.gauge-title {
+  font-size: 15px;
+  font-weight: 700;
+  min-height: 22px;
+}
+
+.gauge {
+  width: 100%;
+  height: 168px;
+}
+
+.gauge-range {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.modules-section {
+  display: grid;
+  grid-template-columns: minmax(420px, 1.2fr) minmax(320px, 1fr);
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(5, 74, 44, 0.05);
+  padding: 16px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px dashed #d8e7de;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.panel-header span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.module-card {
+  border: 1px solid #d9ebdf;
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, #ffffff 0%, #f4faf7 100%);
+  text-align: left;
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.module-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.module-card:hover {
+  transform: translateY(-2px);
+  border-color: #abdcc0;
+}
+
+.module-card h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.module-card p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.right-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.metric-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.metric-value {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.bar-track {
+  width: 100%;
+  height: 11px;
+  border-radius: 999px;
+  background: #e9f2ed;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 75%;
+  background: linear-gradient(90deg, #26af6f, #008a4b);
+  transition: width 0.3s ease;
+}
+
+.resin-state {
+  margin-top: 12px;
+}
+
+.resin-status-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.state-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+}
+
+.state-dot.healthy {
+  background: var(--green);
+}
+
+.state-dot.warn {
+  background: var(--warn);
+}
+
+.state-dot.error {
+  background: var(--danger);
+}
+
+.state-text.healthy {
+  color: var(--green);
+}
+
+.state-text.warn {
+  color: var(--warn);
+}
+
+.state-text.error {
+  color: var(--danger);
+}
+
+.runtime-info {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.salt-control {
+  margin-top: 12px;
+  border-top: 1px dashed #d8e7de;
+  padding-top: 10px;
+}
+
+.salt-control label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.input-with-btn {
+  display: grid;
+  grid-template-columns: 1fr 126px;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.input-with-btn input,
+.field-control input[type="number"] {
+  width: 100%;
+  border: 1px solid #c9dfd2;
+  border-radius: 10px;
+  padding: 9px 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#confirm-salt,
+.toggle-btn,
+.tiny-btn {
+  background: var(--green);
+  color: #fff;
+}
+
+.tiny-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.toggle-btn {
+  margin-top: 10px;
+}
+
+.battery-layout {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.battery-ring-wrap {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto;
+}
+
+.battery-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #e7f0ea;
+  stroke-width: 10;
+}
+
+.ring-progress {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 314;
+  stroke-dashoffset: 69;
+  transition: stroke-dashoffset 0.35s ease;
+}
+
+.battery-percent {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 33, 22, 0.45);
+  display: grid;
+  place-items: center;
+  z-index: 60;
+}
+
+.dialog-content {
+  width: min(92vw, 520px);
+  background: #fff;
+  border-radius: 18px;
+  border: 1px solid #d4e7db;
+  padding: 18px;
+  animation: pop-in 0.25s ease;
+}
+
+.dialog-title {
+  margin: 0 0 14px;
+  font-size: 20px;
+  color: var(--green);
+}
+
+.field {
+  margin-bottom: 10px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.field-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.field-control input[type="range"] {
+  width: 100%;
+  accent-color: var(--green);
+}
+
+.field-control span {
+  width: 140px;
+  text-align: right;
+  font-weight: 700;
+}
+
+.switch-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed #d8e7de;
+  padding-top: 10px;
+  margin-top: 8px;
+}
+
+.switch-field label {
+  margin: 0;
+}
+
+.switch-field input {
+  transform: scale(1.18);
+  accent-color: var(--green);
+}
+
+.dialog-actions {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ghost-btn {
+  background: #eef5f1;
+  color: #31574a;
+}
+
+.settings-page {
+  min-height: 100vh;
+  padding: 26px 18px;
+  display: grid;
+  place-items: center;
+}
+
+.settings-panel {
+  width: min(760px, 100%);
+}
+
+.settings-panel h1 {
+  margin: 0;
+  color: var(--green);
+  font-size: 28px;
+}
+
+.settings-subtitle {
+  margin: 8px 0 14px;
+  color: var(--muted);
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+small {
+  color: var(--muted);
+  margin-top: 6px;
+  display: block;
+}
+
+@keyframes rise-in {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pop-in {
+  from {
+    transform: translateY(12px) scale(0.97);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1320px) {
+  .dashboard-section {
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 1040px) {
+  .dashboard-section {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+
+  .modules-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .dashboard-section {
+    grid-template-columns: 1fr;
+  }
+
+  .module-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .battery-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .input-with-btn {
+    grid-template-columns: 1fr;
+  }
+}
