@@ -25,8 +25,20 @@ jobs:
       - name: Build and package Windows app
         run: npm run dist:win
 
+      - name: Show release directory on failure
+        if: failure()
+        shell: pwsh
+        run: |
+          if (Test-Path release) {
+            Get-ChildItem -Path release -Recurse | Select-Object FullName, Length
+          } else {
+            Write-Host "release directory does not exist"
+          }
+
       - name: Upload artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: purewater-dashboard-win
           path: release/**
+          if-no-files-found: warn
