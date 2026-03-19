@@ -5,14 +5,13 @@
     "main": "electron/main.js",
     "scripts": {
         "dev": "next dev -p 3000",
-        "dev:web": "next dev -p 3000",
-        "dev:electron": "concurrently \"npm:dev:web\" \"wait-on http://localhost:3000 && cross-env ELECTRON_START_URL=http://localhost:3000 electron .\"",
-        "dev:electron:linux": "concurrently \"npm:dev:web\" \"wait-on http://localhost:3000 && cross-env ELECTRON_START_URL=http://localhost:3000 electron . --no-sandbox\"",
-        "build:web": "next build",
-        "build": "npm run build:web",
-        "start": "next start -p 3000",
+        "dev:electron": "concurrently \"npm:dev\" \"wait-on http://localhost:3000 && cross-env ELECTRON_START_URL=http://localhost:3000 electron .\"",
+        "dev:electron:linux": "concurrently \"npm:dev\" \"wait-on http://localhost:3000 && cross-env ELECTRON_START_URL=http://localhost:3000 electron . --no-sandbox\"",
+        "build": "next build",
+        "preview": "npx serve@latest out -l 3000",
+        "start": "npm run preview",
         "start:electron": "cross-env NODE_ENV=production electron .",
-        "dist:win": "npm run build:web && electron-builder --win nsis"
+        "dist:win": "npm run build && electron-builder --win nsis"
     },
     "author": "",
     "license": "MIT",
