@@ -15,6 +15,7 @@ export interface FilterModule {
 	pressureDiff: number;
 	life: number;
 	cycle: number;
+	lifeSwitchThreshold: number;
 }
 export interface EdiModule {
 	current: number;
@@ -110,7 +111,7 @@ export function SimulationProvider({ children }: { children: ReactNode }) {
 	const [sim, setSim] = useState<SimState>(() => ({
 		ro1: { pressure: 2.0, recovery: 68.0, running: false },
 		ro2: { pressure: 1.4, recovery: 82.0, running: false },
-		filter: { pressureDiff: 0.12, life: 90, cycle: 24 },
+		filter: { pressureDiff: 0.12, life: 90, cycle: 24, lifeSwitchThreshold: 20 },
 		edi: { current: 6.0, running: false, resistivity: 17.85 },
 		resin: { saltKg: 600, status: '健康', runSeconds: 0, regenSeconds: 0 },
 		battery: { enabled: true, percent: 78, status: '待机' },

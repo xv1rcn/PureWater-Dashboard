@@ -191,6 +191,25 @@ export default function ControlModulePage({ module }: InferGetStaticPropsType<ty
             />
           </div>
         </div>
+
+        <div className="field">
+          <label htmlFor="filter-threshold">寿命开关阈值 (%)</label>
+          <div className="field-control">
+            <input
+              id="filter-threshold"
+              type="number"
+              min="0"
+              max="100"
+              step="1"
+              value={sim.filter.lifeSwitchThreshold}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                const lifeSwitchThreshold = actions.clamp(Math.round(Number(e.target.value)), 0, 100);
+                actions.setFilter({ lifeSwitchThreshold });
+              }}
+            />
+            <span>{sim.filter.lifeSwitchThreshold}%</span>
+          </div>
+        </div>
       </ControlPageShell>
     );
   }
