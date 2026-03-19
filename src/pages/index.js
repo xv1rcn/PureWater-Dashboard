@@ -88,6 +88,45 @@ export default function DashboardPage() {
     setSaltDose('');
   };
 
+  const moduleCards = [
+    {
+      key: 'ro1',
+      icon: 'RO1',
+      title: '一级反渗透模块',
+      summary: summary.ro1,
+      href: '/control/ro1',
+      running: sim.ro1.running,
+      onToggle: () => actions.setRo1({ running: !sim.ro1.running }),
+    },
+    {
+      key: 'ro2',
+      icon: 'RO2',
+      title: '二级反渗透模块',
+      summary: summary.ro2,
+      href: '/control/ro2',
+      running: sim.ro2.running,
+      onToggle: () => actions.setRo2({ running: !sim.ro2.running }),
+    },
+    {
+      key: 'filter',
+      icon: 'FIL',
+      title: '过滤器模块',
+      summary: summary.filter,
+      href: '/control/filter',
+      running: null,
+      onToggle: null,
+    },
+    {
+      key: 'edi',
+      icon: 'EDI',
+      title: 'EDI 系统模块',
+      summary: summary.edi,
+      href: '/control/edi',
+      running: sim.edi.running,
+      onToggle: () => actions.setEdi({ running: !sim.edi.running }),
+    },
+  ];
+
   return (
     <>
       <Head>
@@ -95,8 +134,8 @@ export default function DashboardPage() {
       </Head>
 
       <header className="top-bar">
-        <h1>一种基于树脂软化-余压回收-浓盐循环的纯水制备优化装置</h1>
-        <p>Next.js + Electron 双模式 | 40 m3/h 基准工况</p>
+        <h1>一种融合再生剂自循环的树脂软化与浓水余压产电的反渗透节能降碳系统</h1>
+        <p aria-hidden="true" />
       </header>
 
       <main className="main-content">
@@ -105,7 +144,6 @@ export default function DashboardPage() {
             <div className="gauge-card" key={def.id}>
               <div className="gauge-title">{def.title}</div>
               <div id={def.id} className="gauge" />
-              <div className="gauge-range">{def.rangeText}</div>
             </div>
           ))}
         </section>
@@ -117,22 +155,35 @@ export default function DashboardPage() {
               <span>点击模块设置参数</span>
             </div>
             <div className="module-grid">
-              <Link className="module-card module-link" href="/control/ro1">
-                <h3>一级反渗透模块</h3>
-                <p>{summary.ro1}</p>
-              </Link>
-              <Link className="module-card module-link" href="/control/ro2">
-                <h3>二级反渗透模块</h3>
-                <p>{summary.ro2}</p>
-              </Link>
-              <Link className="module-card module-link" href="/control/filter">
-                <h3>过滤器模块</h3>
-                <p>{summary.filter}</p>
-              </Link>
-              <Link className="module-card module-link" href="/control/edi">
-                <h3>EDI 系统模块</h3>
-                <p>{summary.edi}</p>
-              </Link>
+              {moduleCards.map((item) => (
+                <article className="module-card" key={item.key}>
+                  <div className="module-card-head">
+                    <div className="module-icon" aria-hidden="true">
+                      {item.icon}
+                    </div>
+                    <div className="module-title-wrap">
+                      <h3>{item.title}</h3>
+                      <p>{item.summary}</p>
+                    </div>
+                  </div>
+                  <div className="module-actions">
+                    {item.onToggle ? (
+                      <button
+                        className={`tiny-btn module-toggle ${item.running ? 'is-running' : ''}`}
+                        type="button"
+                        onClick={item.onToggle}
+                      >
+                        {item.running ? '停止' : '启动'}
+                      </button>
+                    ) : (
+                      <span className="module-toggle-placeholder">仅参数维护</span>
+                    )}
+                    <Link className="module-link-btn" href={item.href}>
+                      进入设置
+                    </Link>
+                  </div>
+                </article>
+              ))}
             </div>
           </section>
 

@@ -264,7 +264,7 @@ export function createGaugeOption(def) {
           formatter: (value) => `${value.toFixed(def.decimals)} ${def.unit}`,
           fontSize: 15,
           fontWeight: 700,
-          offsetCenter: [0, '60%'],
+          offsetCenter: [0, '100%'],
           color: '#17312b',
         },
         title: { show: false },
