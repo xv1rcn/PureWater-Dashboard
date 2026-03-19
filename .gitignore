@@ -8,6 +8,7 @@ out/
 # Electron packaging outputs
 release/
 dist/
+dist-electron/
 
 # Logs
 *.log
@@ -33,3 +34,4 @@ Thumbs.db
 *.swp
 *.swo
 *.tsbuildinfo
+*.js.map

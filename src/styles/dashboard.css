@@ -138,14 +138,24 @@ body {
   width: 58px;
   height: 58px;
   border-radius: 14px;
-  background: linear-gradient(140deg, #14a363, #067744);
-  color: #ffffff;
   font-size: 18px;
   font-weight: 800;
   letter-spacing: 0.6px;
   display: grid;
   place-items: center;
   user-select: none;
+  border: 1px solid #cfe1d8;
+}
+
+.module-icon.is-running {
+  background: #06884b;
+  color: #ffffff;
+  border-color: #06884b;
+}
+
+.module-icon.is-stopped {
+  background: #ffffff;
+  color: #17312b;
 }
 
 .module-title-wrap {
@@ -186,6 +196,10 @@ body {
 }
 
 .module-link-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
   text-decoration: none;
   color: #0c6f41;
   background: #e9f5ef;
